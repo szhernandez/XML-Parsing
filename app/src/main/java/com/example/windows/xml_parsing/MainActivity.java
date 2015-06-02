@@ -29,7 +29,6 @@ public class MainActivity extends ListActivity {
     static final String KEY_ID = "id_materia";
     static final String KEY_NOMBRE = "nombre";
     static final String KEY_PROFESOR = "profesor";
-    //static final String KEY_DESC = "description";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,21 +42,21 @@ public class MainActivity extends ListActivity {
         Document doc = parser.getDomElement(xml); // getting DOM element
 
         NodeList nl = doc.getElementsByTagName(KEY_MATERIA);
-        // looping through all item nodes <item>
+        // Ciclo para obtener todos los nodos del XML
         for (int i = 0; i < nl.getLength(); i++) {
-            // creating new HashMap
+            // Creando un nuevo HashMap
             HashMap<String, String> map = new HashMap<String, String>();
             Element e = (Element) nl.item(i);
-            // adding each child node to HashMap key => value
+            // Agregando nodos hijos-- HashMap key => value
             map.put(KEY_ID, "ID: " +parser.getValue(e, KEY_ID));
             map.put(KEY_NOMBRE,"Materia: " + parser.getValue(e, KEY_NOMBRE));
             map.put(KEY_PROFESOR, "Profesor: " + parser.getValue(e, KEY_PROFESOR));
-            // map.put(KEY_DESC, parser.getValue(e, KEY_DESC));
 
-            // adding HashList to ArrayList
+
+            // Agregando HashList al ArrayList
             menuItems.add(map);
         }
-        // Adding menuItems to ListView
+        // Agregando menuItems al ListView
         ListAdapter adapter = new SimpleAdapter(this, menuItems,
                 R.layout.list_item,
                 new String[] { KEY_ID, KEY_NOMBRE, KEY_PROFESOR }, new int[] {
@@ -65,7 +64,7 @@ public class MainActivity extends ListActivity {
 
         setListAdapter(adapter);
 
-        // selecting single ListView item
+        // Seleccionando un solo elemento del listView
         ListView lv = getListView();
 
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -73,12 +72,12 @@ public class MainActivity extends ListActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-                // getting values from selected ListItem
+                // Obteniendo los valores para el elemento seleccionado
                 String idmateria = ((TextView) view.findViewById(R.id.tv_idmateria)).getText().toString();
                 String nombre = ((TextView) view.findViewById(R.id.tv_nombre)).getText().toString();
                 String profesor = ((TextView) view.findViewById(R.id.tv_profesor)).getText().toString();
 
-                // Starting new intent
+                // Comenzando el nuevo intento, agregando los valores obtenidos del elemento del ListView
                 Intent in = new Intent(getApplicationContext(), mostrar_registro.class);
                 in.putExtra(KEY_ID, idmateria);
                 in.putExtra(KEY_NOMBRE, nombre);

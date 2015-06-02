@@ -99,7 +99,6 @@ public class XMLParser {
             Log.e("Error: ", e.getMessage());
             return null;
         }
-
         return doc;
     }
 
@@ -129,5 +128,4 @@ public class XMLParser {
         NodeList n = item.getElementsByTagName(str);
         return this.getElementValue(n.item(0));
     }
-
 }

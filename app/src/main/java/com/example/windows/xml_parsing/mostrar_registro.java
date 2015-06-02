@@ -19,15 +19,15 @@ public class mostrar_registro extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mostrar_registro);
 
-        // getting intent data
+        // gObteiendo datos
         Intent in = getIntent();
 
-        // Get XML values from previous intent
+        //Obteniendo los valores del XML de la actividad previa
         String idmateria = in.getStringExtra(KEY_ID);
         String nombre = in.getStringExtra(KEY_NOMBRE);
         String profesor = in.getStringExtra(KEY_PROFESOR);
 
-        // Displaying all values on the screen
+        // Mostrando los valores en la pantalla
         TextView lblName = (TextView) findViewById(R.id.lblidmateria);
         TextView lblCost = (TextView) findViewById(R.id.lblnombre);
         TextView lblDesc = (TextView) findViewById(R.id.lblprofesor);
